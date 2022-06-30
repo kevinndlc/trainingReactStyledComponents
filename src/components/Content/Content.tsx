@@ -1,16 +1,18 @@
-import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import Recipe from '../Recipe';
+import { data } from '../../data/recipes'
 
 type Props = {};
 
 function Content({}: Props) {
+  const recipes = data;
+
   return (
     <Wrapper className="container mb-20">
       <h2 className="my-20">Découvrez nos nouvelles recettes</h2>
       <Grid>
-        {[1, 2, 3, 4, 5, 6].map((i) => {
-          return <Recipe />;
+        {recipes.map((r) => {
+          return <Recipe title={r.title} image={r.image} />;
         })}
       </Grid>
     </Wrapper>
@@ -40,10 +42,11 @@ const Wrapper = styled.main`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
-  place-content: center;
   gap: 1rem;
-
-  color: white;
+  
+  > div {
+    height: 500px;
+  }
 `;
 
 export default Content;
